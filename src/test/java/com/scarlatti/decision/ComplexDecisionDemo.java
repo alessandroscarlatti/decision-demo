@@ -1,6 +1,5 @@
 package com.scarlatti.decision;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -10,7 +9,6 @@ import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -57,8 +55,6 @@ public class ComplexDecisionDemo {
 
         allCardsWild.decide(countWildCards == cards.size());
 
-        fewerWildCardsThanNonWildCards.decide(nonWildNumbers.size() < cards.size());
-
         BookDecisionType bookDecisionType = null;
 
         if (hasAtLeastSevenCards.getDecision()) {
@@ -70,6 +66,8 @@ public class ComplexDecisionDemo {
                 }
             } else {
                 if (nonWildCardsSameNumber.getDecision()) {
+                    // don't make this decision until now!
+                    fewerWildCardsThanNonWildCards.decide(nonWildNumbers.size() < cards.size());
                     if (fewerWildCardsThanNonWildCards.getDecision()) {
                         bookDecisionType = BookDecisionType.DirtyBook;
                     }
@@ -86,6 +84,8 @@ public class ComplexDecisionDemo {
         System.out.println(nonWildCardsSameNumber);
         System.out.println(allCardsWild);
         System.out.println(fewerWildCardsThanNonWildCards);
+        System.out.println("DECISION:");
+        System.out.println(bookDecisionType);
 
         assertNotNull(bookDecisionType);
         assertEquals(BookDecisionType.NotABook, bookDecisionType);
