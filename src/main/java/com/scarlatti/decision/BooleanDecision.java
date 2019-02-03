@@ -7,17 +7,17 @@ import java.util.function.Supplier;
  * @author Alessandro Scarlatti
  * @since Saturday, 2/2/2019
  */
-public class StatefulDecision {
+public class BooleanDecision {
     private Boolean decision;
     private String assertionDescription;
     private DecisionState decisionState = DecisionState.DEFINED;
 
-    public StatefulDecision(String assertionDescription) {
+    public BooleanDecision(String assertionDescription) {
         this.assertionDescription = assertionDescription;
     }
 
-    public static StatefulDecision assume(boolean decision, String description) {
-        StatefulDecision decisionObj = new StatefulDecision(description);
+    public static BooleanDecision assume(boolean decision, String description) {
+        BooleanDecision decisionObj = new BooleanDecision(description);
         decisionObj.assume(decision);
         return decisionObj;
     }
@@ -52,7 +52,7 @@ public class StatefulDecision {
 
     @Override
     public String toString() {
-        return "StatefulDecision{" +
+        return "BooleanDecision{" +
             "decision=" + decision +
             ", assertionDescription='" + assertionDescription + '\'' +
             ", decisionState=" + decisionState +
@@ -63,7 +63,7 @@ public class StatefulDecision {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        StatefulDecision that = (StatefulDecision) o;
+        BooleanDecision that = (BooleanDecision) o;
         return Objects.equals(decision, that.decision) &&
             Objects.equals(assertionDescription, that.assertionDescription) &&
             decisionState == that.decisionState;

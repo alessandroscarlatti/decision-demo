@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
  * @author Alessandro Scarlatti
  * @since Saturday, 2/2/2019
  */
-public class DecisionDemo {
+public class SimpleDecisionDemo {
 
     @Test
     public void decisionToString() {
@@ -47,7 +47,7 @@ public class DecisionDemo {
     public void usageWithoutDefiningDescriptionMultipleTimes() {
         Card card = new Card(ACE, SPADES);
 
-        StatefulDecision cardIsAnAce = new StatefulDecision("Card is an Ace.");
+        BooleanDecision cardIsAnAce = new BooleanDecision("Card is an Ace.");
         System.out.println("Defined:");
         System.out.println(cardIsAnAce);
 
@@ -67,7 +67,7 @@ public class DecisionDemo {
     public void usageWithAssume() {
         Card card = new Card(TWO, CLUBS);
 
-        StatefulDecision cardIsAnAce = new StatefulDecision("Card is an Ace.");
+        BooleanDecision cardIsAnAce = new BooleanDecision("Card is an Ace.");
         System.out.println("Defined:");
         System.out.println(cardIsAnAce);
 
@@ -90,9 +90,9 @@ public class DecisionDemo {
         Card card = new Card(SIX, HEARTS);
 
         // if the card is black or a 5, you blow up!
-        StatefulDecision youBlowUp = StatefulDecision.assume(false, "You blow up!");
-        StatefulDecision cardIsBlack = StatefulDecision.assume(false, "Card is black.");
-        StatefulDecision cardIsAFive = StatefulDecision.assume(false, "Card is a Five.");
+        BooleanDecision youBlowUp = BooleanDecision.assume(false, "You blow up!");
+        BooleanDecision cardIsBlack = BooleanDecision.assume(false, "Card is black.");
+        BooleanDecision cardIsAFive = BooleanDecision.assume(false, "Card is a Five.");
 
         if (card.getSuit() == CLUBS || card.getSuit() == SPADES)
             cardIsBlack.decide(true);
@@ -115,9 +115,9 @@ public class DecisionDemo {
         Card card = new Card(FIVE, HEARTS);
 
         // if the card is black or a 5, you blow up!
-        StatefulDecision youBlowUp = StatefulDecision.assume(false, "You blow up!");
-        StatefulDecision cardIsBlack = StatefulDecision.assume(false, "Card is black.");
-        StatefulDecision cardIsAFive = StatefulDecision.assume(false, "Card is a Five.");
+        BooleanDecision youBlowUp = BooleanDecision.assume(false, "You blow up!");
+        BooleanDecision cardIsBlack = BooleanDecision.assume(false, "Card is black.");
+        BooleanDecision cardIsAFive = BooleanDecision.assume(false, "Card is a Five.");
 
         if (card.getSuit() == CLUBS || card.getSuit() == SPADES)
             cardIsBlack.decide(true);
@@ -146,9 +146,9 @@ public class DecisionDemo {
         Card card = new Card(FIVE, HEARTS);
 
         // if the card is black or a 5, you blow up!
-        StatefulDecision youBlowUp = StatefulDecision.assume(false, "You blow up!");
-        StatefulDecision cardIsBlack = StatefulDecision.assume(false, "Card is black.");
-        StatefulDecision cardIsAFive = StatefulDecision.assume(false, "Card is a Five.");
+        BooleanDecision youBlowUp = BooleanDecision.assume(false, "You blow up!");
+        BooleanDecision cardIsBlack = BooleanDecision.assume(false, "Card is black.");
+        BooleanDecision cardIsAFive = BooleanDecision.assume(false, "Card is a Five.");
 
         cardIsBlack.decide(card.getSuit() == CLUBS || card.getSuit() == SPADES);
         cardIsAFive.decide(card.getRank() == FIVE);
